@@ -39,13 +39,13 @@ pipeline {
             }
         }
         }
-  stage('CanaryDeploy') {
-  when {
-    branch 'master'
-  }
-  environment {
-    CANARY_REPLICAS = 1
-  }
+        stage('CanaryDeploy') {
+        when {
+          branch 'master'
+        }
+        environment {
+         CANARY_REPLICAS = 1
+        }
   steps {
     kubernetesDeploy(
       kubeconfigId: 'kubeconfig',
@@ -59,9 +59,9 @@ pipeline {
                 branch 'master'
             }
             }
-     environment {
-      CANARY_REPLICAS = 0
-                   }
+            environment {
+             CANARY_REPLICAS = 0
+                          }
             steps {
                 input 'Deploy to Production?'
                 milestone(1)
